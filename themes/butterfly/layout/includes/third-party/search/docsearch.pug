@@ -1,0 +1,34 @@
+- const { placeholder, docsearch = {} } = theme.search
+- const { appId, apiKey, indexName, indices, option } = docsearch
+//- `indices` is supported since DocSearch v4.0 (multi-index search) and required by v5 (v5 removed `indexName`).
+//- Legacy configs may still use the removed `indexName`; map it to `indices`.
+- const indexList = Array.isArray(indices) ? indices : (indices ? [indices] : [])
+- const docsearchIndices = indexList.length > 0 ? indexList : (indexName ? [indexName] : [])
+- const docsearchOptions = Object.assign({ appId, apiKey, container: '#docsearch', placeholder: placeholder || _p('search.input_placeholder') }, option, { indices: docsearchIndices })
+
+.docsearch-wrap
+  #docsearch(style="display:none")
+  link(rel="stylesheet" href=url_for(theme.asset.docsearch_css))
+  script(src=url_for(theme.asset.docsearch_js))
+  script.
+    (() => {
+      const options = !{JSON.stringify(docsearchOptions)}
+
+      if (typeof docsearch !== 'function' || options.indices.length === 0) {
+        console.warn('[Butterfly] DocSearch: please configure `search.docsearch.appId`, `apiKey` and `indices`.')
+        return
+      }
+
+      docsearch(options)
+
+      const handleClick = () => {
+        document.querySelector('.DocSearch-Button').click()
+      }
+
+      const searchClickFn = () => {
+        btf.addEventListenerPjax(document.querySelector('#search-button > .search'), 'click', handleClick)
+      }
+
+      searchClickFn()
+      window.addEventListener('pjax:complete', searchClickFn)
+    })()
