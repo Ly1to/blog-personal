@@ -18,10 +18,10 @@ nav:
   fixed: false
 
 menu:
-  # Home: / || fas fa-home
-  # List||fas fa-list:
-  #   Music: /music/ || fas fa-music
-  #   Movie: /movies/ || fas fa-video
+  Home: / || fas fa-home
+  Archives: /archives/ || fas fa-archive
+  Tags: /tags/ || fas fa-tags
+  Categories: /categories/ || fas fa-folder-open
 
 # --------------------------------------
 # Code Blocks Settings
@@ -56,7 +56,7 @@ social:
 favicon: /img/favicon.png
 
 avatar:
-  img: /img/butterfly-icon.png
+  img: /img/avatar.webp
   effect: false
 
 # Disable all banner images
@@ -149,7 +149,7 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
   effect: true
   # Customize typed.js
@@ -165,6 +165,8 @@ subtitle:
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
   sub:
+    - 折腾软路由与自托管
+    - 记录 OpenWrt / Docker / 自建服务
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
@@ -292,7 +294,7 @@ aside:
       link: https://github.com/Ly1to
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 一个跑在 OpenWrt 软路由上的自建博客，记录折腾过程。
   card_recent_post:
     enable: true
     # If set 0 will show all
